@@ -26,6 +26,7 @@ dependencies {
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 	compileOnly("org.projectlombok:lombok")
+	implementation("org.apache.commons:commons-lang3:3.12.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
