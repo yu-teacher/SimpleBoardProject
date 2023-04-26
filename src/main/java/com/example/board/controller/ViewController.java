@@ -17,6 +17,6 @@ public class ViewController {
     @GetMapping("/update")
     public void update(){}
 
-    @GetMapping("/read")
-    public void read(){}
+    @GetMapping("/view")
+    public void view(){}
 }
