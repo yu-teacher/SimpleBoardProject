@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +31,8 @@ a:hover{
 .board .board_title{
     padding: 10px;
     color: rgb(0, 0, 0);
+    font-family: 'Dongle', sans-serif;
+    font-size: 30px;
 }
 /* 보드 */
 .board_main {
