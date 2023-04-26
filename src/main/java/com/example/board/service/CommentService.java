@@ -8,6 +8,7 @@ import com.example.board.entity.Comment;
 import com.example.board.repository.BoardRepository;
 import com.example.board.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CommentService {
 
     private final CommentRepository commentRepository;
@@ -38,11 +40,11 @@ public class CommentService {
 
     public CommentResponseDTO commentUpdate(CommentUpdateDTO dto){
         Optional<Board> board = boardRepository.findById(dto.getBoardNum());
-        Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get()));
-        return new CommentResponseDTO().toDTO(comment);
+        log.info(commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get())));
+        return new CommentResponseDTO().toDTO(commentRepository.findById(dto.getCommentNum()).get());
     }
 
-    public boolean commentDelete(Integer commentNum){
+    public Boolean commentDelete(Integer commentNum){
         commentRepository.deleteById(commentNum);
         return !commentRepository.existsByCommentNum(commentNum);
     }
