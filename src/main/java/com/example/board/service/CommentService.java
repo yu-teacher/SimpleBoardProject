@@ -40,8 +40,8 @@ public class CommentService {
 
     public CommentResponseDTO commentUpdate(CommentUpdateDTO dto){
         Optional<Board> board = boardRepository.findById(dto.getBoardNum());
-        log.info(commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get())));
-        return new CommentResponseDTO().toDTO(commentRepository.findById(dto.getCommentNum()).get());
+        Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get()));
+        return new CommentResponseDTO().toDTO(comment);
     }
 
     public Boolean commentDelete(Integer commentNum){
