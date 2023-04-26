@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,5 +30,5 @@ public class Board extends BaseEntity {
     private Integer viewCnt;
 
     @OneToMany(mappedBy = "boardFk")
-    private ArrayList<Comment> comments;
+    private List<Comment> comments;
 }
