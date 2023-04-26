@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +18,12 @@ a {
 a:hover{
     color: #888888;
 }
-
+button{
+    border: none;
+    border-radius: 5px;
+    background-color: pink;
+    cursor: pointer;
+}
 .board {
     width: 80vw;
     margin: 100px auto;
@@ -29,6 +35,8 @@ a:hover{
 .board .board_title{
     padding: 10px;
     color: rgb(0, 0, 0);
+    font-family: 'Dongle', sans-serif;
+    font-size: 30px;
 }
 /* 작성 버튼*/
 .register{
@@ -73,4 +81,65 @@ a:hover{
 .board_view_main .board_view .content{
     min-height: 100px;
     padding: 10px;
+}
+/*댓글*/
+.comment{
+    border-top: 1px solid black;
+    padding: 30px;
+}
+.comment .comment_title{
+    padding: 5px;
+    text-align: center;
+}
+.comment .comment_register{
+    width: 50%;
+    margin: auto;
+}
+.comment .comment_register textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    font-size: 15px;
+}
+.comment .comment_button{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+.comment .comment_button button{
+    margin-left: 5px;
+    padding: 5px 20px;
+}
+.comment .comment_list{
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+.board_view_main .comment_list .info dl{
+    display: inline-block;
+}
+.board_view_main .comment_list .info dl dt,
+.board_view_main .comment_list .info dl dd{
+    display: inline-block;
+    padding: 5px;
+}
+.board_view_main .comment_list .info dl dd{
+    color: #888888;
+}
+.board_view_main .comment_list .comment_content{
+    padding: 5px;
+    border-top: 1px solid black;
+}
+.board_view_main .comment_list .comment_button{
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid black;
+    width: 100%;
+    padding-top: 5px;
+}
+.board_view_main .comment_list .comment_button button{
+    padding: 5px 20px;
 }
