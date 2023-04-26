@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #ebe9e9;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: #888888;
+}
+
+.board {
+    width: 80vw;
+    margin: 100px auto;
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+}
+/* 보드 타이틀*/
+.board .board_title{
+    padding: 10px;
+    color: rgb(0, 0, 0);
+}
+/* 보드 */
+.board_main {
+    width: 100%;
+}
+
+.board_main .board_list {
+    width: 100%;
+}
+.board_main{
+    border-top: 5px solid rgb(0, 0, 0);
+}
+.board_main .board_list .list {
+    border-bottom: 1px solid rgb(169, 168, 168);
+}
+
+.board_main .board_list div div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.board_main .board_list div .num {
+    width: 10%;
+}
+
+.board_main .board_list div .title {
+    width: 48%;
+}
+
+.board_main .board_list div .writer {
+    width: 20%;
+}
+
+.board_main .board_list div .date {
+    width: 10%;
+}
+
+.board_main .board_list div .view {
+    width: 10%;
+}
+/*페이지*/
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+.board_page a:first-child {
+    border-left: 1px solid #ddd;
+}
+/* 작성 버튼*/
+.register{
+    text-align: center;
+    padding: 20px;
+    
+}
+.register button{
+    display: inline-block;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: pink;
+}
+.register .white{
+    background-color: white;
+    padding: 6px 23px;
+    border: 2px solid pink;
+}
+
+@media (max-width: 1100px) {
+
+    .board_list .list .num,
+    .board_list .list .view {
+        display: none;
+    }
+
+    .board_main .board_list div .title {
+        width: 48%;
+    }
+
+    .board_main .board_list div .writer {
+        width: 30%;
+    }
+
+    .board_main .board_list div .date {
+        width: 20%;
+    }
+}
