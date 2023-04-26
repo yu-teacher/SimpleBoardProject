@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #ebe9e9;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: #888888;
+}
+
+.board {
+    width: 80vw;
+    margin: 100px auto;
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+}
+/* 보드 타이틀*/
+.board .board_title{
+    padding: 10px;
+    color: rgb(0, 0, 0);
+}
+/* 작성 버튼*/
+.register{
+    text-align: center;
+    padding: 20px;
+    
+}
+.register button{
+    display: inline-block;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: pink;
+}
+.register .white{
+    background-color: white;
+    padding: 6px 23px;
+    border: 2px solid pink;
+}
+/* view*/
+.board_view_main{
+    border-top: 5px solid rgb(0, 0, 0);
+}
+.board_view_main .board_view{
+    width: 100%;
+}
+.board_view_main .board_view .title{
+    padding: 15px;
+    border-bottom: 1px solid black;
+}
+.board_view_main .board_view .info dl{
+    display: inline-block;
+}
+.board_view_main .board_view .info dl dt,
+.board_view_main .board_view .info dl dd{
+    display: inline-block;
+    padding: 10px;
+}
+.board_view_main .board_view .info dl dd{
+    color: #888888;
+}
+.board_view_main .board_view .content{
+    min-height: 100px;
+    padding: 10px;
+}
