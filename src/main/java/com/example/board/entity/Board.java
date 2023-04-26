@@ -31,4 +31,10 @@ public class Board extends BaseEntity {
 
     @OneToMany(mappedBy = "boardFk")
     private List<Comment> comments;
+
+    // 생성될 때 실행되는 어노테이션이다.
+    @PrePersist
+    private void defaultViewCnt(){
+        this.viewCnt = this.viewCnt == null ? 0:this.viewCnt;
+    }
 }

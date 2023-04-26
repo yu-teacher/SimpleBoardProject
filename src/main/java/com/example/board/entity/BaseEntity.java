@@ -17,10 +17,10 @@ public abstract class BaseEntity {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime regDate;
+    private LocalDateTime regDate = LocalDateTime.now();
 
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime updateDate;
+    private LocalDateTime updateDate = LocalDateTime.now();
 
 }
