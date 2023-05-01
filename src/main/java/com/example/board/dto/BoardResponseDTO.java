@@ -1,13 +1,10 @@
 package com.example.board.dto;
 
 import com.example.board.entity.Board;
-import com.example.board.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 import static com.example.board.util.TimeChange.dateChangeString;
 

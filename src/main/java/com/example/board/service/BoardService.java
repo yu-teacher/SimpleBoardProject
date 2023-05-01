@@ -8,6 +8,9 @@ import com.example.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -29,5 +32,17 @@ public class BoardService {
     //삭제
     public void boardDelete(Integer boardNum){
         boardRepository.deleteById(boardNum);
+    }
+
+    //조회
+    public BoardResponseDTO boardRead(Integer boardNum){
+        Optional<Board> board = boardRepository.findById(boardNum);
+        return new BoardResponseDTO().toDTO(board.get());
+    }
+
+    //목록
+    public List<Board> boardList(){
+        List<Board> list = boardRepository.findAll();
+        return list;
     }
 }

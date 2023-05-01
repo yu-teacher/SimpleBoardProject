@@ -2,11 +2,14 @@ package com.example.board.boardTest;
 
 import com.example.board.dto.BoardRequestDTO;
 import com.example.board.dto.BoardUpdateDTO;
+import com.example.board.entity.Board;
 import com.example.board.service.BoardService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 @Log4j2
@@ -50,4 +53,19 @@ public class BoardTest {
         boardService.boardDelete(2);
     }
 
+    //조회 테스트
+    @Test
+    public void boardReadTest(){
+        System.out.println(boardService.boardRead(10));
+    }
+
+    //목록 테스트
+    @Test
+    public void boardListTest(){
+        List<Board> list = boardService.boardList();
+
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i));
+        }
+    }
 }

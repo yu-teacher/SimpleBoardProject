@@ -37,4 +37,12 @@ public class Board extends BaseEntity {
     private void defaultViewCnt(){
         this.viewCnt = this.viewCnt == null ? 0:this.viewCnt;
     }
+
+    @Override
+    public String toString(){
+        return String.format(
+                "글번호 : %d, 제목 : %s, 내용 : %s, 조회수 : %d",
+                this.boardNum, this.title, this.content, this.viewCnt
+        );
+    }
 }
