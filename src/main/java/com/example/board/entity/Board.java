@@ -37,4 +37,5 @@ public class Board extends BaseEntity {
     private void defaultViewCnt(){
         this.viewCnt = this.viewCnt == null ? 0:this.viewCnt;
     }
+
 }
