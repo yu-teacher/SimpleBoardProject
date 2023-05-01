@@ -29,7 +29,7 @@ public class CommentController {
     }
 
     @PutMapping("/comment")
-    public ResponseEntity<CommentResponseDTO> commentUpdate(@ModelAttribute CommentUpdateDTO dto){
+    public ResponseEntity<CommentResponseDTO> commentUpdate(@RequestBody CommentUpdateDTO dto){
         return new ResponseEntity<>(commentService.commentUpdate(dto), HttpStatus.OK);
     }
 
