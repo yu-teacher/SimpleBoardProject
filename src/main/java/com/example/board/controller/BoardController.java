@@ -29,7 +29,7 @@ public class BoardController {
     }
 
     @PutMapping("/board")
-    public ResponseEntity<BoardResponseDTO> modify(@ModelAttribute BoardUpdateDTO dto){
+    public ResponseEntity<BoardResponseDTO> modify(@RequestBody BoardUpdateDTO dto){
         return new ResponseEntity<>(boardService.boardUpdate(dto), HttpStatus.OK);
     }
 
