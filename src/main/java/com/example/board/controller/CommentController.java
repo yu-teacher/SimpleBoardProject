@@ -5,7 +5,6 @@ import com.example.board.dto.CommentResponseDTO;
 import com.example.board.dto.CommentUpdateDTO;
 import com.example.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

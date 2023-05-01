@@ -15,12 +15,14 @@ public class BoardUpdateDTO {
     private Integer boardNum;
     private String title;
     private String content;
+    private Integer viewCnt;
 
     public Board toEntity(BoardUpdateDTO dto) {
         return Board.builder()
                 .boardNum(dto.getBoardNum())
                 .title(dto.getTitle())
                 .content(dto.getContent())
+                .viewCnt(dto.getViewCnt())
                 .build();
     }
 }
