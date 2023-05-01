@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,8 +42,11 @@ public class BoardService {
     }
 
     //목록
-    public List<Board> boardList(){
+    public List<BoardResponseDTO> boardList(){
         List<Board> list = boardRepository.findAll();
-        return list;
+        return list
+                .stream()
+                .map(board -> new BoardResponseDTO().toDTO(board))
+                .collect(Collectors.toList());
     }
 }

@@ -1,8 +1,8 @@
 package com.example.board.boardTest;
 
 import com.example.board.dto.BoardRequestDTO;
+import com.example.board.dto.BoardResponseDTO;
 import com.example.board.dto.BoardUpdateDTO;
-import com.example.board.entity.Board;
 import com.example.board.service.BoardService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -62,10 +62,10 @@ public class BoardTest {
     //목록 테스트
     @Test
     public void boardListTest(){
-        List<Board> list = boardService.boardList();
+        List<BoardResponseDTO> list = boardService.boardList();
 
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i));
+        for(BoardResponseDTO dto : list){
+            System.out.println(dto);
         }
     }
 }
