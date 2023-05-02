@@ -59,7 +59,7 @@ public class BoardTest {
         System.out.println(boardService.boardRead(10));
     }
 
-    //목록 테스트
+/*    //목록 테스트
     @Test
     public void boardListTest(){
         List<BoardResponseDTO> list = boardService.boardList();
@@ -67,5 +67,5 @@ public class BoardTest {
         for(BoardResponseDTO dto : list){
             System.out.println(dto);
         }
-    }
+    }*/
 }
