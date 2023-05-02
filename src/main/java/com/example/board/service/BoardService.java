@@ -24,6 +24,13 @@ public class BoardService {
         return new BoardResponseDTO().toDTO(board);
     }
 
+    //조회
+    public BoardResponseDTO boardRead(Integer boardNum){
+        boardRepository.updateViewCnt(boardNum);
+        Optional<Board> board = boardRepository.findById(boardNum);
+        return new BoardResponseDTO().toDTO(board.get());
+    }
+
     //수정
     public BoardResponseDTO boardUpdate(BoardUpdateDTO dto){
         Board board = boardRepository.save(new BoardUpdateDTO().toEntity(dto));
@@ -35,12 +42,6 @@ public class BoardService {
         boardRepository.deleteById(boardNum);
     }
 
-    //조회
-    public BoardResponseDTO boardRead(Integer boardNum){
-        Optional<Board> board = boardRepository.findById(boardNum);
-        return new BoardResponseDTO().toDTO(board.get());
-    }
-
     //목록
     public List<BoardResponseDTO> boardList(){
         List<Board> list = boardRepository.findAll();
@@ -49,4 +50,5 @@ public class BoardService {
                 .map(board -> new BoardResponseDTO().toDTO(board))
                 .collect(Collectors.toList());
     }
+
 }
