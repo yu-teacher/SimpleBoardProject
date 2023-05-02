@@ -26,6 +26,11 @@ public class CommentController {
         return new ResponseEntity<>(commentService.commentList(dto), HttpStatus.OK);
     }
 
+    @GetMapping("/comment/{commentNum}")
+    public ResponseEntity<CommentResponseDTO> commentRead(@PathVariable Integer commentNum){
+        return new ResponseEntity<>(commentService.commentRead(commentNum), HttpStatus.OK);
+    }
+
     @PutMapping("/comment")
     public ResponseEntity<CommentResponseDTO> commentUpdate(@RequestBody CommentUpdateDTO dto){
         return new ResponseEntity<>(commentService.commentUpdate(dto), HttpStatus.OK);

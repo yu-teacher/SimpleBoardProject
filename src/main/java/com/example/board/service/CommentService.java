@@ -33,6 +33,10 @@ public class CommentService {
         return new CommentResponseDTO().toDTO(comment);
     }
 
+    public CommentResponseDTO commentRead(Integer commentNum){
+        return new CommentResponseDTO().toDTO(commentRepository.findById(commentNum).get());
+    }
+
     public CommentResponseDTO commentUpdate(CommentUpdateDTO dto){
         Optional<Board> board = boardRepository.findById(dto.getBoardNum());
         Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get()));
