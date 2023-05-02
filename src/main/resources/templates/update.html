@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/update.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/update.js"></script>
 </head>
 <body>
     <div class="board">
@@ -16,17 +18,15 @@
             <div class="board_update">
                 <div class="title">
                     <h3>제목</h3>
-                    <textarea></textarea>
+                    <textarea class="text_title"></textarea>
                 </div>
                 <div class="content">
                     <h3>내용</h3>
-                    <textarea>
-
-                    </textarea>
+                    <textarea class="text_content"></textarea>
                 </div>
             </div>
             <div class="register">
-                <button><a href="#">수정</a></button>
+                <button onclick="update()">수정</button>
                 <button class="white"><a href="/list">취소</a></button>
             </div>
         </div>
