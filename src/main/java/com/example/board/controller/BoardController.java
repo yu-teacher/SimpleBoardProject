@@ -52,15 +52,11 @@ public class BoardController {
         return boardService.boardList();
     }*/
 
-    //목록&페이징
+/*    //목록&페이징
     @GetMapping("/board")
-    public ResponseEntity<List<BoardResponseDTO>> list(Pageable pageable){
-        Page<Board> boardPage = boardService.boardList(pageable);
-        List<BoardResponseDTO> boardList = boardPage
-                .stream()
-                .map(board -> new BoardResponseDTO().toDTO(board))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(boardList);
-    }
+    public Page<BoardResponseDTO> list(@RequestParam("page") int page){
+        Page<BoardResponseDTO> result = boardService.boardList(page, 5);
+        return result;
+    }*/
 
 }

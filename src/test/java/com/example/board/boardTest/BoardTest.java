@@ -59,13 +59,13 @@ public class BoardTest {
         System.out.println(boardService.boardRead(10));
     }
 
-/*    //목록 테스트
+    //목록 테스트
     @Test
     public void boardListTest(){
-        List<BoardResponseDTO> list = boardService.boardList();
+        List<BoardResponseDTO> list = boardService.boardList(0);
 
         for(BoardResponseDTO dto : list){
             System.out.println(dto);
         }
-    }*/
+    }
 }

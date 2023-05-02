@@ -7,6 +7,7 @@ import com.example.board.entity.Board;
 import com.example.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class BoardService {
         boardRepository.deleteById(boardNum);
     }
 
-/*    //목록
+/*   //목록
     public List<BoardResponseDTO> boardList(){
         List<Board> list = boardRepository.findAll();
         return list
@@ -54,13 +55,11 @@ public class BoardService {
     }*/
 
     //목록&페이징
-    public Page<Board> boardList(Pageable pageable){
-        return boardRepository.findAll(pageable);
+    public List<BoardResponseDTO> boardList(Integer pageNum){
+        return boardRepository.pagingBoardList(pageNum)
+                .stream()
+                .map(board -> new BoardResponseDTO().toDTO(board))
+                .collect(Collectors.toList());
     }
-
-/*    //페이지
-    public Page<Board> boardPaging(Pageable pageable){
-        return boardRepository.findAll(pageable);
-    }*/
 
 }
