@@ -15,6 +15,7 @@ public class CommentRequestDTO {
 
     private String content;
     private Integer boardNum;
+    private Integer pageNum;
 
     public Comment toEntity(CommentRequestDTO dto, Board boardFk){
         return Comment

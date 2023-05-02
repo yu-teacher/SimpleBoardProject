@@ -5,11 +5,10 @@ import com.example.board.dto.CommentResponseDTO;
 import com.example.board.dto.CommentUpdateDTO;
 import com.example.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,8 +22,8 @@ public class CommentController {
     }
 
     @GetMapping("/comment")
-    public ResponseEntity<List<CommentResponseDTO>> commentRead(@ModelAttribute CommentRequestDTO dto){
-        return new ResponseEntity<>(commentService.commentRead(dto), HttpStatus.OK);
+    public ResponseEntity<Page<CommentResponseDTO>> commentRead(@ModelAttribute CommentRequestDTO dto){
+        return new ResponseEntity<>(commentService.commentList(dto), HttpStatus.OK);
     }
 
     @PutMapping("/comment")
@@ -36,4 +35,5 @@ public class CommentController {
     public ResponseEntity<Boolean> commentDelete(@PathVariable Integer commentNum){
         return new ResponseEntity<>(commentService.commentDelete(commentNum), HttpStatus.NO_CONTENT);
     }
+
 }

@@ -23,12 +23,12 @@ public class CommentTest {
 
     @Test
     public void commentInsertTest(){
-        for (int i = 0; i < 900; i++) {
+        for (int i = 0; i < 50; i++) {
             String content = "["+i+"] 번째 댓글 내용";
             commentService.commentCreate(
                     CommentRequestDTO
                     .builder()
-                    .boardNum(1)
+                    .boardNum(3)
                     .content(content)
                     .build()
             );
@@ -37,7 +37,7 @@ public class CommentTest {
 
     @Test
     public void commentReadTest(){
-        System.out.println(commentService.commentRead(
+        System.out.println(commentService.commentList(
                 CommentRequestDTO
                 .builder()
                 .boardNum(45)

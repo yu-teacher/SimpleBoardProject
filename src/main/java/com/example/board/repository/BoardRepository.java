@@ -1,13 +1,13 @@
 package com.example.board.repository;
 
 import com.example.board.entity.Board;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board,Integer> {
 
@@ -18,5 +18,6 @@ public interface BoardRepository extends JpaRepository<Board,Integer> {
     void updateViewCnt(Integer boardNum);
 
     @Query("select b from Board b order by b.regDate DESC")
-    List<Board> pagingBoardList(Pageable pageable);
+    Page<Board> pagingBoardList(Pageable pageable);
+
 }

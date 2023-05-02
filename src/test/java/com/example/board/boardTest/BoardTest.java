@@ -8,8 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @SpringBootTest
 @Log4j2
@@ -62,10 +61,20 @@ public class BoardTest {
     //목록 테스트
     @Test
     public void boardListTest(){
-        List<BoardResponseDTO> list = boardService.boardList(1);
+        Page<BoardResponseDTO> list = boardService.boardList(1);
+
+        System.out.println(list.getTotalElements());
+        System.out.println(list.getTotalPages());
 
         for(BoardResponseDTO dto : list){
             System.out.println(dto);
         }
     }
+
+    //뷰단에 총 게시글 갯수 보내기
+    @Test
+    public void boardCountNumTest(){
+        System.out.println(boardService.boardCountNum());
+    }
+
 }

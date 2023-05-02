@@ -3,17 +3,12 @@ package com.example.board.controller;
 import com.example.board.dto.BoardRequestDTO;
 import com.example.board.dto.BoardResponseDTO;
 import com.example.board.dto.BoardUpdateDTO;
-import com.example.board.entity.Board;
 import com.example.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -46,17 +41,10 @@ public class BoardController {
         boardService.boardDelete(boardNum);
     }
 
-/*    //목록
-    @GetMapping("/board")
-    public List<BoardResponseDTO> list(){
-        return boardService.boardList();
-    }*/
-
-/*    //목록&페이징
-    @GetMapping("/board")
-    public Page<BoardResponseDTO> list(@RequestParam("page") int page){
-        Page<BoardResponseDTO> result = boardService.boardList(page, 5);
-        return result;
-    }*/
+    //목록&페이징
+    @GetMapping("/board/list/{pageNum}")
+    public Page<BoardResponseDTO> list(@PathVariable Integer pageNum){
+        return boardService.boardList(pageNum);
+    }
 
 }
