@@ -6,6 +6,10 @@ import com.example.board.dto.BoardUpdateDTO;
 import com.example.board.entity.Board;
 import com.example.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,13 +46,18 @@ public class BoardService {
         boardRepository.deleteById(boardNum);
     }
 
-    //목록
-    public List<BoardResponseDTO> boardList(){
-        List<Board> list = boardRepository.findAll();
-        return list
+    //목록&페이징
+    public Page<BoardResponseDTO> boardList(Integer pageNum){
+        Pageable pageable = PageRequest.of(pageNum - 1, 5);
+        Page<Board> boardPage = boardRepository.pagingBoardList(pageable);
+
+        List<BoardResponseDTO> boardDTOList = boardPage
+                .getContent()
                 .stream()
                 .map(board -> new BoardResponseDTO().toDTO(board))
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(boardDTOList, pageable, boardPage.getTotalElements());
     }
 
 }

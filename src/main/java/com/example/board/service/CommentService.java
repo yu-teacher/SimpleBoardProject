@@ -9,6 +9,10 @@ import com.example.board.repository.BoardRepository;
 import com.example.board.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,15 +33,6 @@ public class CommentService {
         return new CommentResponseDTO().toDTO(comment);
     }
 
-    public List<CommentResponseDTO> commentRead(CommentRequestDTO dto){
-        Optional<Board> board = boardRepository.findById(dto.getBoardNum());
-        List<Comment> comments = commentRepository.findByBoardFk(board.get());
-        return comments
-                .stream()
-                .map(comment -> new CommentResponseDTO().toDTO(comment))
-                .collect(Collectors.toList());
-    }
-
     public CommentResponseDTO commentUpdate(CommentUpdateDTO dto){
         Optional<Board> board = boardRepository.findById(dto.getBoardNum());
         Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get()));
@@ -47,5 +42,20 @@ public class CommentService {
     public Boolean commentDelete(Integer commentNum){
         commentRepository.deleteById(commentNum);
         return !commentRepository.existsByCommentNum(commentNum);
+    }
+
+    //목록&페이징
+    public Page<CommentResponseDTO> commentList(CommentRequestDTO dto){
+        Optional<Board> board = boardRepository.findById(dto.getBoardNum());
+        Pageable pageable = PageRequest.of(dto.getPageNum() - 1, 5);
+        Page<Comment> commentPage = commentRepository.pagingCommentList(pageable, board.get());
+
+        List<CommentResponseDTO> commentDTOList = commentPage
+                .getContent()
+                .stream()
+                .map(comment -> new CommentResponseDTO().toDTO(comment))
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(commentDTOList, pageable, commentPage.getTotalElements());
     }
 }
