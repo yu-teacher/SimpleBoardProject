@@ -56,7 +56,8 @@ public class BoardService {
 
     //목록&페이징
     public List<BoardResponseDTO> boardList(Integer pageNum){
-        return boardRepository.pagingBoardList(pageNum)
+        Pageable pageable = PageRequest.of(pageNum - 1, 5);
+        return boardRepository.pagingBoardList(pageable)
                 .stream()
                 .map(board -> new BoardResponseDTO().toDTO(board))
                 .collect(Collectors.toList());

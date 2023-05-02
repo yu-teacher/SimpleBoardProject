@@ -62,7 +62,7 @@ public class BoardTest {
     //목록 테스트
     @Test
     public void boardListTest(){
-        List<BoardResponseDTO> list = boardService.boardList(0);
+        List<BoardResponseDTO> list = boardService.boardList(1);
 
         for(BoardResponseDTO dto : list){
             System.out.println(dto);
