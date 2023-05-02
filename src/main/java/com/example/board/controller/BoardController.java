@@ -18,28 +18,34 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    //등록
     @PostMapping("/board")
     public ResponseEntity<BoardResponseDTO> register(@RequestBody BoardRequestDTO dto){
         return new ResponseEntity<>(boardService.boardCreate(dto), HttpStatus.OK);
     }
 
+    //조회
     @GetMapping("/board/{boardNum}")
     public ResponseEntity<BoardResponseDTO> read(@PathVariable Integer boardNum){
         return new ResponseEntity<>(boardService.boardRead(boardNum), HttpStatus.OK);
     }
 
+    //수정
     @PutMapping("/board")
     public ResponseEntity<BoardResponseDTO> modify(@RequestBody BoardUpdateDTO dto){
         return new ResponseEntity<>(boardService.boardUpdate(dto), HttpStatus.OK);
     }
 
+    //삭제
     @DeleteMapping("/board/{boardNum}")
     public void remove(@PathVariable Integer boardNum){
         boardService.boardDelete(boardNum);
     }
 
+    //목록
     @GetMapping("/board")
     public List<BoardResponseDTO> list(){
         return boardService.boardList();
     }
+
 }
