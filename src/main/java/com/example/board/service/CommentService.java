@@ -48,6 +48,9 @@ public class CommentService {
     public Page<CommentResponseDTO> commentList(CommentRequestDTO dto){
         Optional<Board> board = boardRepository.findById(dto.getBoardNum());
         Pageable pageable = PageRequest.of(dto.getPageNum() - 1, 5);
+
+        if(commentRepository.findByBoardFk(board.get()).isEmpty()) return null;
+
         Page<Comment> commentPage = commentRepository.pagingCommentList(pageable, board.get());
 
         List<CommentResponseDTO> commentDTOList = commentPage
