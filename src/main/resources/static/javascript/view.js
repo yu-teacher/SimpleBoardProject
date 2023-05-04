@@ -110,7 +110,7 @@ function getBoardList() {
       }
 
       if (currentPageNum < totalPages) {
-        html += '<a href="#" class="next">' + ">" + "</a>";
+        html += '<a href="#" class="next">&gt;</a>';
       }
 
       $(".board_page").html(html);
@@ -152,17 +152,20 @@ function commentdelete(commentNum) {
 function modalcall(commentNum) {
   $('.modal').toggleClass('on');
   $('.modal-background').toggleClass('on');
-  let a = "<div display='hidden' id='comment-num'>"+commentNum+"</div>"
-  $(".modal_textarea").append(a);
+  let a = "<input type='hidden' value='"+commentNum+"' class='comment-num'>"
+  
+  
   $.ajax({
     url: "/comment/" + commentNum,
     type: 'GET',
     dataType: 'json',
     success: function(data) {
       $('.modal_textarea').val(data.content); // 댓글 내용을 textarea에 넣어줍니다.
+      $(".modal").append(a);
     },
   });
 }
+
 function cancelmodal(){
   $('.modal').toggleClass('on');
   $('.modal-background').toggleClass('on');
@@ -170,7 +173,7 @@ function cancelmodal(){
 
 function commentsave() {
   let comment = $('.modal textarea').val();
-  let commentNum = $('#comment-num').val();
+  let commentNum = $('.comment-num').val();
   let data = {
     content: comment,
     boardNum : boardNum,
@@ -178,7 +181,7 @@ function commentsave() {
   };
   $.ajax({
     type: "PUT",
-    url: "/comment/" + commentNum,
+    url: "/comment",
     data: JSON.stringify(data),
     contentType: "application/json",
     success: function() {
@@ -188,6 +191,7 @@ function commentsave() {
     },
   });
 }
+
 
 function commentcancel(){
   $("textarea").val("");

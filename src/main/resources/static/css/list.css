@@ -42,13 +42,64 @@ a:hover{
 .board_main .board_list {
     width: 100%;
 }
+.board_main .board_list_top {
+    width: 100%;
+}
 .board_main{
     border-top: 5px solid rgb(0, 0, 0);
 }
-.board_main .board_list .list {
+.board_main .board_list_top .list {
     border-bottom: 1px solid rgb(169, 168, 168);
+    text-align: center;
+    padding: 0px 7px;
 }
 
+.board_main .board_list_top div div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.board_main .board_list_top div .num {
+    width: 10%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.board_main .board_list_top div .title {
+    width: 48%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.board_main .board_list_top div .writer {
+    width: 20%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.board_main .board_list_top div .date {
+    width: 10%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.board_main .board_list_top div .view {
+    width: 10%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.board_main .board_list .list {
+    border-bottom: 1px solid rgb(169, 168, 168);
+    text-align: center;
+}
+
+.board_main .board_list_top div div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+}
 .board_main .board_list div div {
     display: inline-block;
     padding: 15px 0;
@@ -57,22 +108,27 @@ a:hover{
 
 .board_main .board_list div .num {
     width: 10%;
+    text-align: center;
 }
 
 .board_main .board_list div .title {
     width: 48%;
+    text-align: center;
 }
 
 .board_main .board_list div .writer {
     width: 20%;
+    text-align: center;
 }
 
 .board_main .board_list div .date {
     width: 10%;
+    text-align: center;
 }
 
 .board_main .board_list div .view {
     width: 10%;
+    text-align: center;
 }
 /*페이지*/
 .board_page {
@@ -99,7 +155,18 @@ a:hover{
 }
 
 .board_page a.num {
-    padding-top: 9px;
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+.board_page a.next {
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+.board_page a.prev {
+    margin: auto;
+    padding-top: 6px;
     font-size: 1.4rem;
 }
 
@@ -130,14 +197,28 @@ a:hover{
     padding: 6px 23px;
     border: 2px solid pink;
 }
-
 @media (max-width: 1100px) {
 
     .board_list .list .num,
     .board_list .list .view {
         display: none;
     }
+    .board_list_top .list .num,
+    .board_list_top .list .view {
+        display: none;
+    }
 
+    .board_main .board_list_top div .title {
+        width: 48%;
+    }
+
+    .board_main .board_list_top div .writer {
+        width: 30%;
+    }
+
+    .board_main .board_list_top div .date {
+        width: 20%;
+    }
     .board_main .board_list div .title {
         width: 48%;
     }

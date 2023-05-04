@@ -213,7 +213,7 @@ button{
 }
 
 .board_page a.num {
-    padding-top: 9px;
+    padding-top: 6px;
     font-size: 1.4rem;
 }
 
@@ -225,4 +225,14 @@ button{
 
 .board_page a:first-child {
     border-left: 1px solid #ddd;
+}
+.board_page a.next {
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+.board_page a.prev {
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
 }

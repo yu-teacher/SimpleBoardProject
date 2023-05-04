@@ -97,7 +97,7 @@ $(document).ready(function () {
           endPage = totalPages;
         }
 
-        if (currentPageNum > 1) {
+        if (currentPageNum > 0) {
           html += '<a href="#" class="prev">'+"<"+"</a>";
         }
 
@@ -109,8 +109,8 @@ $(document).ready(function () {
           }
         }
 
-        if (currentPageNum < totalPages - 2) {
-          html += '<a href="#" class="next">'+">"+'</a>';
+        if (currentPageNum < totalPages) {
+          html += '<a href="#" class="next">' + ">" + "</a>";
         }
 
         $(".board_page").html(html);
