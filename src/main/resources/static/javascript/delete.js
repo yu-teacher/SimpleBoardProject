@@ -1,6 +1,7 @@
 function listdelete() {
-    let link = document.location.href;
-    let boardNum = link.split("=")[1];
+  const link = document.location.href;
+  const temp = link.split(/[&=]/);
+  const boardNum = temp[1];
     $.ajax({
       type: "DELETE",
       url: "/board/" + boardNum,

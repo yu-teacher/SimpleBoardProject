@@ -1,5 +1,5 @@
 const link = document.location.href;
-const temp = link.split("=");
+const temp = link.split(/[&=]/);
 const boardNum = temp[1];
 $(document).ready(function () {
   let writer = "라온";
@@ -20,18 +20,56 @@ $(document).ready(function () {
     },
   });
 
+  let currentPageNum = 1;
+let totalPages = 0;
+let pageArray = [];
+getBoardList();
+
+$(document).on("click", ".num", function () {
+  currentPageNum = parseInt($(this).text());
+  getBoardList();
+});
+
+$(document).on("click", ".prev", function () {
+  if (currentPageNum > 1) {
+    currentPageNum--;
+    getBoardList();
+  }
+});
+
+$(document).on("click", ".next", function () {
+  if (currentPageNum < totalPages) {
+    currentPageNum++;
+    getBoardList();
+  }
+});
+
+$(document).on("click", ".first", function () {
+  currentPageNum = 1;
+  getBoardList();
+});
+
+$(document).on("click", ".last", function () {
+  currentPageNum = totalPages;
+  getBoardList();
+});
+
+function getBoardList() {
+  let html = "";
   $.ajax({
     type: "GET",
-    url: "/comment/?boardNum=" + boardNum,
+    url: "/comment?boardNum=" + boardNum + "&pageNum=" + currentPageNum,
     contentType: "charset=utf-8",
     success: function (data) {
-      for (let i = 0; i < data.length; i++) {
-        let comment = data[i].content;
+    let content = data.content;
+    $(".comment_list").empty();  // 이전 댓글 목록 초기화
+      for (let i = 0; i < content.length; i++) {
+        let comment = content[i].content;
         let writer = "라온";
-        let date = data[i].regDate;
-        let commentNum = data[i].commentNum;
+        let date = content[i].regDate;
+        let commentNum = content[i].commentNum;
         let comment_item =
-          "<div class='comment_item'>" +
+          "<div class='comment_item'>"+
           "<div class='info'><dl><dt>작성자</dt><dd>" +
           writer +
           "</dd></dl><dl><dt>작성일</dt><dd>" +
@@ -40,7 +78,7 @@ $(document).ready(function () {
           "<div class='comment_content'>" +
           comment +
           "</div>" +
-          "<div class='comment_button'><button class='comment_edit' onclick='modal(" +
+          "<div class='comment_button'><button class='comment_edit' onclick='modalcall(" +
           commentNum +
           ")'>수정</button><button onclick='commentdelete(" +
           commentNum +
@@ -48,18 +86,44 @@ $(document).ready(function () {
           "</div>";
         $(".comment_list").append(comment_item);
       }
-    },
-    error: function () {
-      alert("에러 발생");
+
+      html = "";
+
+      totalPages = data.totalPages;
+      let startPage = Math.floor((currentPageNum - 1) / 5) * 5 + 1;
+      let endPage = startPage + 4;
+
+      if (endPage > totalPages) {
+        endPage = totalPages;
+      }
+
+      if (currentPageNum > 1) {
+        html += '<a href="#" class="prev">' + "<" + "</a>";
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        if (currentPageNum === i) {
+          html += '<a href="#" class="num on">' + i + "</a>";
+        } else {
+          html += '<a href="#" class="num">' + i + "</a>";
+        }
+      }
+
+      if (currentPageNum < totalPages) {
+        html += '<a href="#" class="next">' + ">" + "</a>";
+      }
+
+      $(".board_page").html(html);
     },
   });
+}
 });
 
 function commentregister() {
   let comment = $(".text_comment").val();
   let data = {
     content: comment,
-    boardNum: bNum,
+    boardNum: boardNum,
   };
   $.ajax({
     type: "POST",
@@ -85,4 +149,46 @@ function commentdelete(commentNum) {
   });
 }
 
+function modalcall(commentNum) {
+  $('.modal').toggleClass('on');
+  $('.modal-background').toggleClass('on');
+  let a = "<div display='hidden' id='comment-num'>"+commentNum+"</div>"
+  $(".modal_textarea").append(a);
+  $.ajax({
+    url: "/comment/" + commentNum,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      $('.modal_textarea').val(data.content); // 댓글 내용을 textarea에 넣어줍니다.
+    },
+  });
+}
+function cancelmodal(){
+  $('.modal').toggleClass('on');
+  $('.modal-background').toggleClass('on');
+}
 
+function commentsave() {
+  let comment = $('.modal textarea').val();
+  let commentNum = $('#comment-num').val();
+  let data = {
+    content: comment,
+    boardNum : boardNum,
+    commentNum : commentNum
+  };
+  $.ajax({
+    type: "PUT",
+    url: "/comment/" + commentNum,
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    success: function() {
+      $('.modal').toggleClass('on');
+      $('.modal-background').toggleClass('on');
+      window.location.href = link;
+    },
+  });
+}
+
+function commentcancel(){
+  $("textarea").val("");
+}

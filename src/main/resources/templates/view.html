@@ -57,17 +57,24 @@
                 </div>
                 <div class="comment_button">
                     <button onclick="commentregister()">등록</button>
-                    <button>취소</button>
+                    <button onclick="commentcancel()">취소</button>
                 </div>
                 <div class="comment_list">
                     
                 </div>
+                <div class="board_page">
+                
+                </div>
             </div>
         </div>
     </div>
+    <div class="modal-background"></div>
     <div class="modal">
-        <textarea></textarea>
-        <button>저장</button>
+      <textarea class="modal_textarea"></textarea>
+      <div>
+        <button onclick="commentsave()">저장</button>
+        <button onclick="cancelmodal()">취소</button>
+      </div>
     </div>
 </body>
 

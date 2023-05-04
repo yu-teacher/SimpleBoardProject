@@ -1,44 +1,120 @@
 $(document).ready(function () {
-  $.ajax({
-    type: "GET",
-    url: "/board",
-    contentType: "charset=utf-8",
-    success: function (data) {
-      for (let i = 0; i < data.length; i++) {
-        let num = data[i].boardNum;
-        let title = data[i].title;
-        let writer = "라온";
-        let date = data[i].regDate;
-        let view = data[i].viewCnt;
+  let currentPageNum = 1;
+  let totalPages = 0;
+  let pageArray = [];
+  getBoardList();
 
-        let html =
-          '<div class="list">' +
-          '<div class="num">' +
-          num +
-          "</div>" +
-          '<div class="title">' +
-          '<a href="/view?boardNum=' +
-          num +
-          '">' +
-          title +
-          "</a>" +
-          "</div>" +
-          '<div class="writer">' +
-          writer +
-          "</div>" +
-          '<div class="date">' +
-          date +
-          "</div>" +
-          '<div class="view">' +
-          view +
-          "</div>" +
-          "</div>";
-
-        $(".board_list").append(html);
-      }
-    },
-    error: function () {
-      alert("에러 발생");
-    },
+  $(document).on("click", ".num", function () {
+    currentPageNum = parseInt($(this).text());
+    getBoardList();
   });
+
+
+  $(document).on("click", ".prev", function () {
+    if (currentPageNum > 1) {
+      currentPageNum--;
+      getBoardList();
+    }
+  });
+
+ 
+  $(document).on("click", ".next", function () {
+    if (currentPageNum < totalPages) {
+      currentPageNum++;
+      getBoardList();
+    }
+  });
+
+ 
+  $(document).on("click", ".first", function () {
+    currentPageNum = 1;
+    getBoardList();
+  });
+
+  $(document).on("click", ".last", function () {
+    currentPageNum = totalPages;
+    getBoardList();
+  });
+
+  function getBoardList() {
+    $.ajax({
+      type: "GET",
+      url: "/board/list/" + currentPageNum,
+      contentType: "charset=utf-8",
+      success: function (data) {
+        totalPages = data.totalPages;
+        pageArray = [];
+
+        
+        for (let i = 1; i <= totalPages; i++) {
+          pageArray.push(i);
+        }
+
+        let content = data.content;
+        let html = "";
+
+        for (let i = 0; i < content.length; i++) {
+          let num = content[i].boardNum;
+          let title = content[i].title;
+          let writer = "라온";
+          let date = content[i].regDate;
+          let view = content[i].viewCnt;
+
+          html +=
+            '<div class="list">' +
+            '<div class="num">' +
+            num +
+            "</div>" +
+            '<div class="title">' +
+            '<a href="/view?boardNum=' +
+            num +
+            "&pageNum=1" +
+            '">' +
+            title +
+            "</a>" +
+            "</div>" +
+            '<div class="writer">' +
+            writer +
+            "</div>" +
+            '<div class="date">' +
+            date +
+            "</div>" +
+            '<div class="view">' +
+            view +
+            "</div>" +
+            "</div>";
+        }
+
+   
+        $(".board_list").html(html);
+
+        html = "";
+
+        let startPage = Math.floor((currentPageNum - 1) / 5) * 5 + 1;
+        let endPage = startPage + 4;
+        
+        if (endPage > totalPages) {
+          endPage = totalPages;
+        }
+
+        if (currentPageNum > 1) {
+          html += '<a href="#" class="prev">'+"<"+"</a>";
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          if (currentPageNum === i) {
+            html += '<a href="#" class="num on">' + i + "</a>";
+          } else {
+            html += '<a href="#" class="num">' + i + "</a>";
+          }
+        }
+
+        if (currentPageNum < totalPages - 2) {
+          html += '<a href="#" class="next">'+">"+'</a>';
+        }
+
+        $(".board_page").html(html);
+      },
+    });
+  }
 });
