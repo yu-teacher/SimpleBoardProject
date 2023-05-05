@@ -2,13 +2,13 @@ function register() {
   let title = $(".text_title").val();
   let content = $(".text_content").val();
 
-  if (title === "" || content === "") {  // 제목 또는 내용이 비어있을 경우
+  if (title === "" || content === "") { 
     if (title === "") {
-      $(".text_title").focus();  // 제목 필드에 포커스 이동
+      $(".text_title").focus();  
     } else {
-      $(".text_content").focus();  // 내용 필드에 포커스 이동
+      $(".text_content").focus(); 
     }
-    return;  // 함수 종료
+    return;  
   }
 
   let data = {
