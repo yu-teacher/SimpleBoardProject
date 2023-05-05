@@ -66,7 +66,7 @@ $(document).ready(function () {
             num +
             "</div>" +
             '<div class="title">' +
-            '<a href="/view?boardNum=' +
+            '<a onclick="viewCnt('+num+')" href="/view?boardNum=' +
             num +
             "&pageNum=1" +
             '">' +
@@ -118,3 +118,11 @@ $(document).ready(function () {
     });
   }
 });
+
+function viewCnt(boardNum){
+  $.ajax({
+    type: "PUT",
+    url: "/board/view/" + boardNum,
+    contentType: "charset=utf-8"
+  })
+}

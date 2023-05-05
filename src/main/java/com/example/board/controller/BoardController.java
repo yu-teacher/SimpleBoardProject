@@ -35,6 +35,11 @@ public class BoardController {
         return new ResponseEntity<>(boardService.boardUpdate(dto), HttpStatus.OK);
     }
 
+    @PutMapping("/board/view/{boardNum}")
+    public void viewCnt(@PathVariable Integer boardNum){
+        boardService.viewCntPlus(boardNum);
+    }
+
     //삭제
     @DeleteMapping("/board/{boardNum}")
     public void remove(@PathVariable Integer boardNum){

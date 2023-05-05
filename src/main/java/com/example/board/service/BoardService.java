@@ -30,7 +30,6 @@ public class BoardService {
 
     //조회
     public BoardResponseDTO boardRead(Integer boardNum){
-        boardRepository.updateViewCnt(boardNum);
         Optional<Board> board = boardRepository.findById(boardNum);
         return new BoardResponseDTO().toDTO(board.get());
     }
@@ -58,6 +57,9 @@ public class BoardService {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(boardDTOList, pageable, boardPage.getTotalElements());
+    }
+    public void viewCntPlus(Integer boardNum){
+        boardRepository.updateViewCnt(boardNum);
     }
 
 }
