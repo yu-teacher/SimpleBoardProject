@@ -114,9 +114,17 @@ button{
 .comment .comment_list{
     width: 50%;
     margin: 20px auto;
+}
+.comment .comment_list .comment_item{
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px 0;
+    margin: 20px auto;
+}
+.comment .comment_list .comment_item textarea{
+    width: 99%;
+    border: none;
+    resize: none;
 }
 .board_view_main .comment_list .info dl{
     display: inline-block;
@@ -142,4 +150,89 @@ button{
 }
 .board_view_main .comment_list .comment_button button{
     padding: 5px 20px;
+}
+
+.modal{
+    display: none;
+}
+.modal button{
+    padding: 5px 10px;
+}
+.modal textarea{
+    width: 400px;
+    height: 50px;
+}
+.modal.on{
+    width: 400px;
+    height: 50px;
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+.modal-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 어둡게 만들 배경 색상 */
+    z-index: 1; /* 모달보다 아래에 위치하도록 z-index 설정 */
+    display: none;
+}
+.modal-background.on{
+    display: block;
+}
+
+
+
+/*페이지*/
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num {
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+.board_page a:first-child {
+    border-left: 1px solid #ddd;
+}
+.board_page a.next {
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+.board_page a.prev {
+    margin: auto;
+    padding-top: 6px;
+    font-size: 1.4rem;
 }

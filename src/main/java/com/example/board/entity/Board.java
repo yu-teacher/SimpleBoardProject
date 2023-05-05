@@ -29,7 +29,7 @@ public class Board extends BaseEntity {
 
     private Integer viewCnt;
 
-    @OneToMany(mappedBy = "boardFk")
+    @OneToMany(mappedBy = "boardFk", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     // 생성될 때 실행되는 어노테이션이다.

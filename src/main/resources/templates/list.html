@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>게시판</title>
     <link rel="stylesheet" href="/css/list.css">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+    
     
 </head>
 <body>
@@ -17,60 +17,20 @@
             <h1>게시판</h1>          
         </div>
         <div class="board_main">
-            <div class="board_list">
-                <div class="list top">
+            <div class="board_list_top">
+                <div class="list">
                     <div class="num">번호</div>
                     <div class="title">제목</div>
                     <div class="writer">작성자</div>
                     <div class="date">작성일</div>
                     <div class="view">조회수</div>
                 </div>
-                <div class="list">
-                    <div class="num">1</div>
-                    <div class="title"><a href="/view">제목입니다</a></div>
-                    <div class="writer">라온</div>
-                    <div class="date">2023-04-26</div>
-                    <div class="view">53</div>
-                </div>
-                <div class="list">
-                    <div class="num">2</div>
-                    <div class="title"><a href="#">제목입니다</a></div>
-                    <div class="writer">라온</div>
-                    <div class="date">2023-04-26</div>
-                    <div class="view">53</div>
-                </div>
-                <div class="list">
-                    <div class="num">3</div>
-                    <div class="title"><a href="#">제목입니다</a></div>
-                    <div class="writer">라온</div>
-                    <div class="date">2023-04-26</div>
-                    <div class="view">53</div>
-                </div>
-                <div class="list">
-                    <div class="num">4</div>
-                    <div class="title"><a href="#">제목입니다</a></div>
-                    <div class="writer">라온</div>
-                    <div class="date">2023-04-26</div>
-                    <div class="view">53</div>
-                </div>
-                <div class="list">
-                    <div class="num">5</div>
-                    <div class="title"><a href="#">제목입니다</a></div>
-                    <div class="writer">라온</div>
-                    <div class="date">2023-04-26</div>
-                    <div class="view">53</div>
-                </div>
+            </div>
+            <div class="board_list">
+
             </div>
             <div class="board_page">
-                <a href="#" class="bt first"><<</a>
-                <a href="#" class="bt prev"><</a>
-                <a href="#" class="num on">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="num">3</a>
-                <a href="#" class="num">4</a>
-                <a href="#" class="num">5</a>
-                <a href="#" class="bt next">></a>
-                <a href="#" class="bt last">>></a>
+                
             </div>
             <div class="register">
                 <button><a href="/register">작성</a></button>
@@ -78,4 +38,5 @@
         </div>
     </div>
 </body>
+<script src="/javascript/list.js"></script>
 </html>
