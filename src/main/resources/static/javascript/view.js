@@ -121,6 +121,10 @@ function getBoardList() {
 
 function commentregister() {
   let comment = $(".text_comment").val();
+  if(comment === ""){
+    $(".text_comment").focus();
+    return;
+  }
   let data = {
     content: comment,
     boardNum: boardNum,
