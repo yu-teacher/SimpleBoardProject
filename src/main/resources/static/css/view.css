@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
 * {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     background-color: #ebe9e9;
 }
 
@@ -15,15 +17,18 @@ a {
     text-decoration: none;
     color: black;
 }
-a:hover{
+
+a:hover {
     color: #888888;
 }
-button{
+
+button {
     border: none;
     border-radius: 5px;
     background-color: pink;
     cursor: pointer;
 }
+
 .board {
     width: 80vw;
     margin: 100px auto;
@@ -31,138 +36,170 @@ button{
     background-color: white;
     padding: 5px;
 }
+
 /* 보드 타이틀*/
-.board .board_title{
+.board .board_title {
     padding: 10px;
     color: rgb(0, 0, 0);
     font-family: 'Dongle', sans-serif;
     font-size: 30px;
 }
+
 /* 작성 버튼*/
-.register{
+.register {
     text-align: center;
     padding: 20px;
-    
+
 }
-.register button{
+
+.register button {
     display: inline-block;
     padding: 8px 25px;
     border: none;
     border-radius: 5px;
     background-color: pink;
 }
-.register .white{
+
+.register .white {
     background-color: white;
     padding: 6px 23px;
     border: 2px solid pink;
 }
+
 /* view*/
-.board_view_main{
+.board_view_main {
     border-top: 5px solid rgb(0, 0, 0);
 }
-.board_view_main .board_view{
+
+.board_view_main .board_view {
     width: 100%;
 }
-.board_view_main .board_view .title{
+
+.board_view_main .board_view .title {
     padding: 15px;
     border-bottom: 1px solid black;
 }
-.board_view_main .board_view .info dl{
+
+.board_view_main .board_view .info dl {
     display: inline-block;
+    width: 23%;
 }
+
 .board_view_main .board_view .info dl dt,
-.board_view_main .board_view .info dl dd{
+.board_view_main .board_view .info dl dd {
     display: inline-block;
     padding: 10px;
+
 }
-.board_view_main .board_view .info dl dd{
+
+.board_view_main .board_view .info dl dd {
     color: #888888;
 }
-.board_view_main .board_view .content{
+
+.board_view_main .board_view .content {
     min-height: 100px;
     padding: 10px;
 }
+
 /*댓글*/
-.comment{
+.comment {
     border-top: 1px solid black;
     padding: 30px;
 }
-.comment .comment_title{
+
+.comment .comment_title {
     padding: 5px;
     text-align: center;
 }
-.comment .comment_register{
+
+.comment .comment_register {
     width: 50%;
     margin: auto;
 }
-.comment .comment_register textarea{
+
+.comment .comment_register textarea {
     width: 100%;
     height: 100px;
     resize: none;
     font-size: 15px;
 }
-.comment .comment_button{
+
+.comment .comment_button {
     width: 50%;
     margin: auto;
     display: flex;
     justify-content: flex-end;
 }
-.comment .comment_button button{
-    margin-left: 5px;
+
+.comment .comment_button button {
+    margin:2px;
     padding: 5px 20px;
 }
-.comment .comment_list{
+
+.comment .comment_list {
     width: 50%;
     margin: 20px auto;
 }
-.comment .comment_list .comment_item{
+
+.comment .comment_list .comment_item {
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px 0;
     margin: 20px auto;
 }
-.comment .comment_list .comment_item textarea{
+
+.comment .comment_list .comment_item textarea {
     width: 99%;
     border: none;
     resize: none;
 }
-.board_view_main .comment_list .info dl{
+
+.board_view_main .comment_list .info dl {
     display: inline-block;
 }
+
 .board_view_main .comment_list .info dl dt,
-.board_view_main .comment_list .info dl dd{
+.board_view_main .comment_list .info dl dd {
     display: inline-block;
     padding: 5px;
+    font-size: 13px;
 }
-.board_view_main .comment_list .info dl dd{
+
+.board_view_main .comment_list .info dl dd {
     color: #888888;
 }
-.board_view_main .comment_list .comment_content{
+
+.board_view_main .comment_list .comment_content {
     padding: 5px;
     border-top: 1px solid black;
 }
-.board_view_main .comment_list .comment_button{
+
+.board_view_main .comment_list .comment_button {
     display: flex;
     justify-content: center;
     border-top: 1px solid black;
     width: 100%;
     padding-top: 5px;
 }
-.board_view_main .comment_list .comment_button button{
+
+.board_view_main .comment_list .comment_button button {
     padding: 5px 20px;
 }
 
-.modal{
+.modal {
     display: none;
 }
-.modal button{
+
+.modal button {
     padding: 5px 10px;
 }
-.modal textarea{
+
+.modal textarea {
     width: 400px;
     height: 50px;
 }
-.modal.on{
+
+.modal.on {
     width: 400px;
     height: 50px;
     display: block;
@@ -172,17 +209,21 @@ button{
     transform: translate(-50%, -50%);
     z-index: 4;
 }
-.modal-background{
+
+.modal-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* 어둡게 만들 배경 색상 */
-    z-index: 1; /* 모달보다 아래에 위치하도록 z-index 설정 */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* 어둡게 만들 배경 색상 */
+    z-index: 1;
+    /* 모달보다 아래에 위치하도록 z-index 설정 */
     display: none;
 }
-.modal-background.on{
+
+.modal-background.on {
     display: block;
 }
 
@@ -226,13 +267,101 @@ button{
 .board_page a:first-child {
     border-left: 1px solid #ddd;
 }
+
 .board_page a.next {
     margin: auto;
     padding-top: 6px;
     font-size: 1.4rem;
 }
+
 .board_page a.prev {
     margin: auto;
     padding-top: 6px;
     font-size: 1.4rem;
+}
+
+@media screen and (max-width: 480px) {
+
+    .board .board_title {
+        font-size: 20px;
+    }
+    .board_view_main .board_view .info dl{
+        width: 19%;
+    }
+    .board_view_main .board_view .info dl dt,
+.board_view_main .board_view .info dl dd{
+    font-size: 14px;
+    padding: 8px;
+}
+    .board_view_main .comment_list .info dl dt,
+    .board_view_main .comment_list .info dl dd {
+        display: inline-block;
+        padding: 2;
+        font-size: 12px;
+    }
+    .comment .comment_register {
+        width: 100%;
+        margin: auto;
+    }
+    button{
+        font-size: 10px;
+        padding: 5px 15px;
+    }
+    .comment .comment_button button {
+        white-space: nowrap;
+    }
+    .comment .comment_list{
+        margin: 0;
+        width: 100%;
+    }
+    .comment .comment_list .comment_item{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 280px) {
+
+    .board .board_title {
+        font-size: 20px;
+    }
+    h1{
+        font-size: 18px;
+    }
+    .board_view_main .board_view .info dl{
+        width: 23%;
+    }
+    .board_view_main .board_view .info dl dt,
+.board_view_main .board_view .info dl dd{
+    font-size: 10px;
+    padding: 8px;
+}
+    .board_view_main .comment_list .info dl dt,
+    .board_view_main .comment_list .info dl dd {
+        display: inline-block;
+        padding: 2;
+        font-size: 12px;
+    }
+    .comment .comment_register {
+        width: 100%;
+        margin: auto;
+    }
+    .register button{
+        padding: 5px 15px;
+    }
+    .register .white{
+        padding: 4px 15px;
+    }
+    button{
+        font-size: 10px;
+        padding: 5px 15px;
+    }
+    .comment .comment_button button {
+        white-space: nowrap;
+    }
+    .comment .comment_list{
+        margin: 0;
+        width: 100%;
+    }
+    .comment .comment_list .comment_item{
+        width: 100%;
+    }
 }

@@ -59,7 +59,9 @@ $(document).ready(function () {
           let writer = "라온";
           let date = content[i].regDate;
           let view = content[i].viewCnt;
-
+          if (title.length > 12) {
+            title = title.substring(0, 9) + "...";
+          }
           html +=
             '<div class="list">' +
             '<div class="num">' +

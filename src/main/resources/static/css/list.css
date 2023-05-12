@@ -209,7 +209,7 @@ a:hover{
     }
 
     .board_main .board_list_top div .title {
-        width: 48%;
+        width: 47%;
     }
 
     .board_main .board_list_top div .writer {
@@ -231,3 +231,66 @@ a:hover{
         width: 20%;
     }
 }
+@media screen and (max-width: 480px) {
+    /* 480px 이하일 때 적용할 스타일 */
+    .board .board_title{
+        font-size: 20px;
+    }
+    .board_main .board_list_top div .title {
+        width: 47%;
+        font-size: 13px;
+    }
+
+    .board_main .board_list_top div .writer {
+        width: 30%;
+        font-size: 13px;
+    }
+
+    .board_main .board_list_top div .date {
+        width: 20%;
+        font-size: 13px;
+    }
+    .board_main .board_list div .title {
+        width: 48%;
+        font-size: 13px;
+    }
+
+    .board_main .board_list div .writer {
+        width: 30%;
+        font-size: 13px;
+    }
+
+    .board_main .board_list div .date {
+        width: 20%;
+        font-size: 13px;
+    }
+    .board_page a{
+        width: 26px;
+        height: 26px;
+    }
+    .board_page a.num {
+        margin: auto;
+        padding-top: 6px;
+        font-size: 1.0rem;
+    }
+    .board_page a.next {
+        margin: auto;
+        padding-top: 6px;
+        font-size: 1.0rem;
+    }
+    .board_page a.prev {
+        margin: auto;
+        padding-top: 6px;
+        font-size: 1.0rem;
+    }
+  }
+  @media (max-width: 280px) {
+    .board_main .board_list_top .list{
+        padding: 0;
+    }
+    .board_main .board_list_top div .title {
+        width: 45.5%;
+        font-size: 13px;
+    }
+
+  }
