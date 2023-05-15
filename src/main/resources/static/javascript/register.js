@@ -11,7 +11,7 @@ function register() {
       data: JSON.stringify(data),
       contentType: "application/json",
       success: function () {
-        location.href = location.host + "/list";
+        location.href = "/list";
       },
     });
   }
