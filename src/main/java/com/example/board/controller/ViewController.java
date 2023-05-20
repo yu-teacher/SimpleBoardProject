@@ -19,4 +19,8 @@ public class ViewController {
 
     @GetMapping("/view")
     public void view(){}
+
+    @GetMapping("/temp")
+    public void temp(){}
+
 }

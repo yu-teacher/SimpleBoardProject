@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 업로드</title>
+</head>
+<body>
+<h2>이미지 업로드</h2>
+<input type="file" id="imageFile" required><br><br>
+<button id="uploadButton">업로드</button>
+<div id="message"></div>
+<div id="imageContainer"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function() {
+            $('#uploadButton').click(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData();
+                var imageFile = $('#imageFile')[0].files[0];
+                formData.append('imageFile', imageFile);
+
+                $.ajax({
+                    url: '/image',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        let imgf = '<img src="/image/'+response+'" alt="">';
+                        $("#imageContainer").html(imgf);
+                    },
+                    error: function(xhr, status, error) {
+                        $('#message').text('이미지 업로드에 실패했습니다: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+</html>
