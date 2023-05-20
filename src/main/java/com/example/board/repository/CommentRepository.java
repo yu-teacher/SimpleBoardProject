@@ -14,6 +14,8 @@ public interface CommentRepository extends JpaRepository<Comment,Integer> {
 
     List<Comment> findByBoardFk(Board boardFk);
 
+    Integer countByBoardFk(Board boardFk);
+
     boolean existsByCommentNum(Integer commentNum);
 
     @Query("select c from Comment c where boardFk = :boardFk order by c.regDate DESC")

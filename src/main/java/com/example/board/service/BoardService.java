@@ -5,6 +5,7 @@ import com.example.board.dto.BoardResponseDTO;
 import com.example.board.dto.BoardUpdateDTO;
 import com.example.board.entity.Board;
 import com.example.board.repository.BoardRepository;
+import com.example.board.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     //등록
     public BoardResponseDTO boardCreate(BoardRequestDTO dto){
@@ -53,7 +55,7 @@ public class BoardService {
         List<BoardResponseDTO> boardDTOList = boardPage
                 .getContent()
                 .stream()
-                .map(board -> new BoardResponseDTO().toDTO(board))
+                .map(board -> new BoardResponseDTO().toDTO(board,commentRepository))
                 .collect(Collectors.toList());
 
         return new PageImpl<>(boardDTOList, pageable, boardPage.getTotalElements());
