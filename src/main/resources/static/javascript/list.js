@@ -59,6 +59,8 @@ $(document).ready(function () {
           let writer = "라온";
           let date = content[i].regDate;
           let view = content[i].viewCnt;
+          let commentcnt = content[i].commentCnt
+          console.log(commentcnt)
           if (title.length > 12) {
             title = title.substring(0, 9) + "...";
           }
@@ -72,7 +74,7 @@ $(document).ready(function () {
             num +
             "&pageNum=1" +
             '">' +
-            title +
+            title +"("+commentcnt+")"+
             "</a>" +
             "</div>" +
             '<div class="writer">' +
