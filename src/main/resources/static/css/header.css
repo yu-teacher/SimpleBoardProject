@@ -1,0 +1,31 @@
+#header{
+  font-weight: bold;
+  background-color: brown;
+  font-size: 18px;
+  color: white;
+}
+.wrapper{
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lists{
+  display: flex;
+  margin-right: 60px;
+}
+.lists li{
+  margin-right: 20px;
+}
+.header_title{
+  font-size: 40px;
+  margin-left: 30px;
+}
+.log{
+  margin-right: 30px;
+}
+
+.user_hidden{
+  display: none;
+}

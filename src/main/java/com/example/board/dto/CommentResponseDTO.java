@@ -19,6 +19,8 @@ public class CommentResponseDTO {
     private String regDate;
     private String updateDate;
     private Integer boardNum;
+    private String writer;
+    private Integer userNum;
 
     public CommentResponseDTO toDTO(Comment comment){
         return CommentResponseDTO
@@ -28,6 +30,8 @@ public class CommentResponseDTO {
                 .regDate(dateChangeString(comment.getRegDate()))
                 .updateDate(dateChangeString(comment.getUpdateDate()))
                 .boardNum(comment.getBoardFk().getBoardNum())
+                .writer(comment.getUser().getUsername())
+                .userNum(comment.getUser().getUserNum())
                 .build();
     }
 

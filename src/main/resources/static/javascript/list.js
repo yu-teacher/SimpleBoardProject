@@ -56,11 +56,10 @@ $(document).ready(function () {
         for (let i = 0; i < content.length; i++) {
           let num = content[i].boardNum;
           let title = content[i].title;
-          let writer = "라온";
+          let writer = content[i].writer;
           let date = content[i].regDate;
           let view = content[i].viewCnt;
-          let commentcnt = content[i].commentCnt
-          console.log(commentcnt)
+          let commentcnt = content[i].commentCnt;
           if (title.length > 12) {
             title = title.substring(0, 9) + "...";
           }

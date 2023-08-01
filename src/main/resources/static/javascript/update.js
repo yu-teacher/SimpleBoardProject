@@ -1,4 +1,7 @@
+let userNum;
+
 $(document).ready(function () {
+  authCheck();
   let link = document.location.href;
   let temp = link.split(/[&=]/);
   let boardNum = temp[1];
@@ -14,6 +17,7 @@ $(document).ready(function () {
     },
   });
 });
+
 function update() {
   let link = document.location.href;
   let temp = link.split(/[&=]/);
@@ -22,10 +26,11 @@ function update() {
   let content = $(".text_content").val();
   let viewCnt = $(".text_view").val();
   let data = {
-    title: title,
-    content: content,
-    boardNum: boardNum,
-    viewCnt: viewCnt,
+    title,
+    content,
+    boardNum,
+    viewCnt,
+    userNum
   };
   $.ajax({
     type: "PUT",
@@ -35,5 +40,23 @@ function update() {
     success: function () {
         window.location.href = "/view?boardNum=" + boardNum;
     },
+  });
+}
+
+function authCheck() {
+
+  let Authorization = localStorage.getItem("Authorization");
+
+  $.ajax({
+      type: 'GET',
+      url: '/auth/check',
+      dataType: 'JSON',
+      contentType: 'application/json; charset=UTF-8',
+      headers: {
+          'Authorization': Authorization
+      },
+      success: function (result){
+        userNum = result.userNum;
+      }
   });
 }

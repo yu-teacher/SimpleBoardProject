@@ -29,6 +29,28 @@ button {
     cursor: pointer;
 }
 
+.user_hidden{
+    visibility:hidden
+}
+
+.board_name{
+    display: inline-block;
+}
+
+.userOnly{
+    display: inline-block;
+    float: right;
+}
+
+.userOnly button{
+    display: inline-block;
+    margin-top: 3px;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: pink;
+}
+
 .board {
     width: 80vw;
     margin: 100px auto;

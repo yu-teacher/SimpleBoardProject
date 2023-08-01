@@ -17,6 +17,8 @@ public class BoardResponseDTO {
     private String content;
     private Integer viewCnt;
     private Integer commentCnt;
+    private String writer;
+    private Integer userNum;
     private String regDate;
     private String updateDate;
 
@@ -28,6 +30,8 @@ public class BoardResponseDTO {
                 .viewCnt(board.getViewCnt())
                 .regDate(dateChangeString(board.getRegDate()))
                 .updateDate(dateChangeString(board.getUpdateDate()))
+                .writer(board.getUser().getUsername())
+                .userNum(board.getUser().getUserNum())
                 .build();
     }
 
@@ -40,6 +44,8 @@ public class BoardResponseDTO {
                 .commentCnt(commentRepository.countByBoardFk(board))
                 .regDate(dateChangeString(board.getRegDate()))
                 .updateDate(dateChangeString(board.getUpdateDate()))
+                .writer(board.getUser().getUsername())
+                .userNum(board.getUser().getUserNum())
                 .build();
     }
 }

@@ -5,8 +5,10 @@ import com.example.board.dto.CommentResponseDTO;
 import com.example.board.dto.CommentUpdateDTO;
 import com.example.board.entity.Board;
 import com.example.board.entity.Comment;
+import com.example.board.entity.UserEntity;
 import com.example.board.repository.BoardRepository;
 import com.example.board.repository.CommentRepository;
+import com.example.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -26,10 +28,12 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
     public CommentResponseDTO commentCreate(CommentRequestDTO dto){
-        Optional<Board> board = boardRepository.findById(dto.getBoardNum());
-        Comment comment = commentRepository.save(new CommentRequestDTO().toEntity(dto,board.get()));
+        Board board = boardRepository.findById(dto.getBoardNum()).get();
+        UserEntity user = userRepository.findById(dto.getUserNum()).get();
+        Comment comment = commentRepository.save(new CommentRequestDTO().toEntity(dto, board, user));
         return new CommentResponseDTO().toDTO(comment);
     }
 
@@ -38,8 +42,9 @@ public class CommentService {
     }
 
     public CommentResponseDTO commentUpdate(CommentUpdateDTO dto){
-        Optional<Board> board = boardRepository.findById(dto.getBoardNum());
-        Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board.get()));
+        Board board = boardRepository.findById(dto.getBoardNum()).get();
+        UserEntity user = userRepository.findById(dto.getUserNum()).get();
+        Comment comment = commentRepository.save(new CommentUpdateDTO().toEntity(dto,board,user));
         return new CommentResponseDTO().toDTO(comment);
     }
 

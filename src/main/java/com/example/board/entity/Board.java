@@ -23,7 +23,6 @@ public class Board extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-
     @Column(nullable = false, length = 3000)
     private String content;
 
@@ -31,6 +30,10 @@ public class Board extends BaseEntity {
 
     @OneToMany(mappedBy = "boardFk", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "user_num")
+    private UserEntity user;
 
     // 생성될 때 실행되는 어노테이션이다.
     @PrePersist

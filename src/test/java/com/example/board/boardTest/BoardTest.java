@@ -71,10 +71,4 @@ public class BoardTest {
         }
     }
 
-    //뷰단에 총 게시글 갯수 보내기
-    @Test
-    public void boardCountNumTest(){
-        System.out.println(boardService.boardCountNum());
-    }
-
 }

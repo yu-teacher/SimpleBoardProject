@@ -1,26 +1,46 @@
 const link = document.location.href;
 const temp = link.split(/[&=]/);
 const boardNum = temp[1];
+let userNum;
+
+const add_user = `
+                <div class="comment_title">
+                    <h3>댓글</h3>
+                </div>
+                <div class="comment_register">
+                    <textarea class="text_comment"></textarea>
+                </div>
+                <div class="comment_button">
+                    <button onclick="commentregister()">등록</button>
+                    <button onclick="commentcancel()">취소</button>
+                </div>
+`
+
 $(document).ready(function () {
-  let writer = "라온";
+
+  let Authorization = localStorage.getItem("Authorization");
+
+  
+
   $.ajax({
-    type: "GET",
-    url: "/board/" + boardNum,
-    contentType: "charset=utf-8",
-    success: function (data) {
-      $(".title h1").text(data.title);
-      $(".info dd").eq(0).text(data.boardNum);
-      $(".info dd").eq(1).text(writer);
-      $(".info dd").eq(2).text(data.regDate);
-      $(".info dd").eq(3).text(data.viewCnt);
-      $(".content").text(data.content);
-      $(".white").click(function () {
-        window.location.href = "/update?boardNum=" + boardNum;
-      });
-    },
+      type: 'GET',
+      url: '/auth/check',
+      dataType: 'JSON',
+      contentType: 'application/json; charset=UTF-8',
+      headers: {
+          'Authorization': Authorization
+      },
+      success: function (result){
+        userNum = result.userNum;
+        load_view();
+      },
+      error: function (request, status, error) {
+        window.location.href = '/'
+        load_view();
+      }
   });
 
-  let currentPageNum = 1;
+let currentPageNum = 1;
 let totalPages = 0;
 let pageArray = [];
 getBoardList();
@@ -62,12 +82,21 @@ function getBoardList() {
     contentType: "charset=utf-8",
     success: function (data) {
     let content = data.content;
-    $(".comment_list").empty();  // 이전 댓글 목록 초기화
+    if (undefined !== content){
+      $(".comment_list").empty();  // 이전 댓글 목록 초기화
       for (let i = 0; i < content.length; i++) {
         let comment = content[i].content;
-        let writer = "라온";
+        let writer = content[i].writer;
         let date = content[i].regDate;
         let commentNum = content[i].commentNum;
+        let edit_delete = '';
+        if(userNum == content[i].userNum){
+          edit_delete = "<div class='comment_button'><button class='comment_edit' onclick='modalcall(" +
+          commentNum +
+          ")'>수정</button><button onclick='commentdelete(" +
+          commentNum +
+          ")'>삭제</button></div>"
+        }
         let comment_item =
           "<div class='comment_item'>"+
           "<div class='info'><dl><dt>작성자</dt><dd>" +
@@ -77,16 +106,10 @@ function getBoardList() {
           "</dd></dl></div>" +
           "<div class='comment_content'>" +
           comment +
-          "</div>" +
-          "<div class='comment_button'><button class='comment_edit' onclick='modalcall(" +
-          commentNum +
-          ")'>수정</button><button onclick='commentdelete(" +
-          commentNum +
-          ")'>삭제</button></div>" +
+          "</div>" + edit_delete +
           "</div>";
         $(".comment_list").append(comment_item);
       }
-
       html = "";
 
       totalPages = data.totalPages;
@@ -114,10 +137,36 @@ function getBoardList() {
       }
 
       $(".board_page").html(html);
-    },
+      }
+    }
   });
 }
 });
+
+function load_view(){
+  $.ajax({
+    type: "GET",
+    url: "/board/" + boardNum,
+    contentType: "charset=utf-8",
+    success: function (data) {
+      if(userNum == data.userNum) {
+        $(".userOnly").removeClass('user_hidden');
+      }
+      $(".title h1").text(data.title);
+      $(".info dd").eq(0).text(data.boardNum);
+      $(".info dd").eq(1).text(data.writer);
+      $(".info dd").eq(2).text(data.regDate);
+      $(".info dd").eq(3).text(data.viewCnt);
+      $(".content").text(data.content);
+      $(".white").click(function () {
+        window.location.href = "/update?boardNum=" + boardNum;
+      });
+    },
+  });
+
+  if(userNum !== undefined) $(".add_user").html(add_user);
+  
+}
 
 function commentregister() {
   let comment = $(".text_comment").val();
@@ -128,6 +177,7 @@ function commentregister() {
   let data = {
     content: comment,
     boardNum: boardNum,
+    userNum: userNum
   };
   $.ajax({
     type: "POST",
@@ -181,7 +231,8 @@ function commentsave() {
   let data = {
     content: comment,
     boardNum : boardNum,
-    commentNum : commentNum
+    commentNum : commentNum,
+    userNum : userNum
   };
   $.ajax({
     type: "PUT",
@@ -199,4 +250,22 @@ function commentsave() {
 
 function commentcancel(){
   $("textarea").val("");
+}
+
+function authCheck() {
+
+  let Authorization = localStorage.getItem("Authorization");
+
+  $.ajax({
+      type: 'GET',
+      url: '/auth/check',
+      dataType: 'JSON',
+      contentType: 'application/json; charset=UTF-8',
+      headers: {
+          'Authorization': Authorization
+      },
+      success: function (result){
+        userNum = result.userNum;
+      }
+  });
 }

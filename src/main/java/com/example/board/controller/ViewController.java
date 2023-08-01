@@ -10,13 +10,14 @@ public class ViewController {
 
     @GetMapping("/list")
     public void list(){}
-
     @GetMapping("/register")
     public void register(){}
-
     @GetMapping("/update")
     public void update(){}
-
     @GetMapping("/view")
     public void view(){}
+    @GetMapping("/login")
+    public void login(){}
+    @GetMapping("/header")
+    public void header(){}
 }
